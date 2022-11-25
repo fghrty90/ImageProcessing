@@ -12,6 +12,8 @@
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.18.1",
-    "jimp": "^0.16.1"
+    "jimp": "^0.16.1",
+    "lru-cache": "^7.14.1",
+    "sharp": "^0.31.2"
   }
 }
