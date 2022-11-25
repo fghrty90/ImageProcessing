@@ -59,14 +59,14 @@ router.get('/:filePath(*)', async (req, res) => {
 
                 if (cache.has(cache_key)) {
                     var buf_data = JSON.stringify(cache.get(cache_key));
-
                     var buf = Buffer.from(JSON.parse(buf_data));
 
                     res.writeHead(200, { 'Content-Type': 'image/jpg' });
                     res.end(buf);
                 } else {
-                    const img_sharp = sharp(imageFilePath);
+                    const img_sharp = sharp(imageFilePath, { animated: true });
                     const metadata = await img_sharp.metadata();
+
                     if (change_width > 0 && change_height > 0) {
                         img_sharp // 압축할 이미지 경로
                             .resize(change_width, change_height) // 비율을 유지하며 가로 크기 줄이기
@@ -79,7 +79,6 @@ router.get('/:filePath(*)', async (req, res) => {
                         res.end(buffer);
                     });
                 }
-                //res.end(buffer);
             }
         });
     } catch (error) {
@@ -89,5 +88,9 @@ router.get('/:filePath(*)', async (req, res) => {
     }
 });
 
+process.on('uncaughtException', (err) => {
+    console.error('죽지마 ㅠㅠ');
+    console.error(err);
+});
 // Create Model & Export
 module.exports = router;
