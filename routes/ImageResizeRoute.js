@@ -12,11 +12,12 @@ if (process.env.DEV_ADOPTED_ENV == 'DEVELOPER_PC') {
 } else {
     image_path = '/home/ayeobi/service/www/KluboImg/';
 }
+sharp.cache(false);
 
 const options = {
     max: 500,
     maxSize: 5000,
-    ttl: 1000 * 60 * 5,
+    ttl: 1000 * 60 * 5, // 5분
     sizeCalculation: (value, key) => {
         return 1;
     },
@@ -39,7 +40,8 @@ router.get('/:filePath(*)', async (req, res) => {
                 res.end('');
             } else {
                 const fileName = path.parse(imageFilePath).name;
-                let cache_key = `${fileName}_${stats.mtimeMs}`;
+                let cache_key = `${fileName}_${parseInt(stats.mtimeMs)}`;
+
                 let change_width = 0;
                 let change_height = 0;
                 if (aSizeList.length > 0) {
