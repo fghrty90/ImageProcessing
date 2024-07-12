@@ -1,6 +1,6 @@
 var express = require('express'); //서버를 생성한다. ?
 var router = express.Router(); // 라우터 분리 ?? ㄴㅁㄴㅁㄴ
-const fs = require('fs');
+const fs = require('fs'); // 1
 const sharp = require('sharp');
 const LRU = require('lru-cache');
 const path = require('path');
