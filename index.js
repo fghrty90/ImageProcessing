@@ -1,7 +1,7 @@
 const express = require("express");
 //const compression = require('compression');
 
-/* express 객체 생성 ????????aaaaaa?asdaaaasd*/
+/* express 객체 생성 ?????????asdaaaasd*/
 const app = express();
 
 const ImageResizeRoute = require("./routes/ImageResizeRoute");
